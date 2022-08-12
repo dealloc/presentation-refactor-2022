@@ -2,6 +2,7 @@ const { src, series, dest, watch, parallel } = require('gulp');
 const connect = require('gulp-connect');
 const sass = require('gulp-sass')(require('sass'));
 const esbuild = require('gulp-esbuild');
+const imagemin = require('gulp-imagemin');
 
 // parameters
 let minify = (process.env.NODE_ENV === 'production');
@@ -22,6 +23,10 @@ const scripts = () => src('./src/index.js')
 	}))
 	.pipe(dest('dist'));
 
+const images = () => src('assets/*')
+	.pipe(imagemin())
+	.pipe(dest('dist/assets'));
+
 
 const reload = () => src('*.html')
 	.pipe(dest('dist'))
@@ -37,11 +42,13 @@ function serve(cb) {
 	watch('index.html', series(reload));
 	watch('src/**/*.js', series(scripts, reload));
 	watch('src/**/*.scss', series(styles, reload));
+	watch('assets/*', series(images, reload));
 }
 
 exports.styles = styles;
 exports.scripts = scripts;
+exports.images = images;
 exports.reload = reload;
 exports.serve = serve;
-exports.build = parallel(styles, scripts, reload);
-exports.default = series(parallel(styles, scripts, reload), serve);
+exports.build = parallel(styles, scripts, images, reload);
+exports.default = series(parallel(styles, scripts, images, reload), serve);
