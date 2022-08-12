@@ -1,0 +1,36 @@
+{
+  "name": "presentation-refactor-2022",
+  "version": "1.0.0",
+  "description": "Presentation for the Re:Factor conference 2022",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp",
+    "build": "NODE_ENV=production gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dealloc/presentation-refactor-2022.git"
+  },
+  "keywords": [
+    "re:factor",
+    "conference",
+    "presentation",
+    "reveal.js"
+  ],
+  "author": "Wannes Gennar <wannes.gennar@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dealloc/presentation-refactor-2022/issues"
+  },
+  "homepage": "https://github.com/dealloc/presentation-refactor-2022#readme",
+  "dependencies": {
+    "reveal.js": "^4.3.1"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-connect": "^5.7.0",
+    "gulp-esbuild": "^0.10.4",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.54.4"
+  }
+}
