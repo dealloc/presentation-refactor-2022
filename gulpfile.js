@@ -43,5 +43,5 @@ exports.styles = styles;
 exports.scripts = scripts;
 exports.reload = reload;
 exports.serve = serve;
-exports.build = parallel(styles, scripts);
+exports.build = parallel(styles, scripts, reload);
 exports.default = series(parallel(styles, scripts, reload), serve);
