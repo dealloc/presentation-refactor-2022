@@ -14,9 +14,18 @@
 			<div class="slides">
 				<section>
 					<section>Distributed Concurrency</section>
-					<section>by Wannes Gennar</section>
+					<section>
+						<p>Wannes Gennar</p>
+						<p class="fragment">
+							Consultant @ <span class="euricom">Euricom</span>
+						</p>
+					</section>
+					<section>
+						Concurrency in distributed systems
+					</section>
 				</section>
 
+				<!-- What is a distributed system -->
 				<section>
 					<section>
 						What are <span class="euricom">distributed systems</span>
@@ -30,12 +39,50 @@
 						that appear to its users as <span class="euricom">one computer</span>
 						<p>- Andrew Tannenbaum</p>
 					</section>
+					<section>
+						<p>Three characteristics</p>
+						<ul>
+							<li class="fragment">
+								Run independently
+							</li>
+							<li class="fragment">Fail independently</li>
+							<li class="fragment">Work towards a common goal</li>
+						</ul>
+					</section>
 				</section>
 
+				<!-- Why bother building them? -->
 				<section>
 					<section>Why build <span class="euricom">distributed systems</span>?</section>
 					<section>
-						reasons.
+						Microservices
+						<p class="fragment r-fit-text">
+							Teams can develop, deploy and scale software <span class="euricom">independently</span>
+						</p>
+					</section>
+					<section>
+						Resiliency
+						<p class="fragment r-fit-text">
+							In case a machine <span class="euricom">fails</span>,
+							there's other machines to <span class="euricom">take over</span>
+						</p>
+					</section>
+					<section>
+						Scalability
+						<p class="fragment r-fit-text">
+							Why make <span class="euricom">one computer</span> solve your problem
+							if you can have a <span class="euricom">hundred computers</span> solve your problem
+						</p>
+					</section>
+				</section>
+
+				<!-- the bad news: complexity -->
+				<section>
+					<section>
+						So why isn't <span class="euricom">everything</span> a distributed system?
+					</section>
+					<section>
+						distributed systems are really <span class="euricom">complex</span>
 					</section>
 				</section>
 
