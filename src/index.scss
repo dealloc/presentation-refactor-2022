@@ -5,9 +5,19 @@
 	color: $brightGreen;
 }
 
+.list-type-none {
+	list-style-type: none;
+}
+
 #branding-logo {
 	position: absolute;
 	bottom: 2rem;
 	left: 2rem;
 	width: 300px;
+}
+
+@media screen and (max-width: 800px) {
+	#branding-logo {
+		display: none;
+	}
 }

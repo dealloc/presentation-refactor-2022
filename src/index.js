@@ -1,9 +1,11 @@
 import Reveal from 'reveal.js';
+import RevealNotes from 'reveal.js/plugin/notes/notes';
 
 const branding = document.getElementById('branding-logo');
 const deck = new Reveal({
-	plugins: [],
-	hash: true
+	plugins: [RevealNotes],
+	hash: true,
+	pdfSeparateFragments: false
 });
 
 // ensure the Euricom logo properly transforms to remain readable.

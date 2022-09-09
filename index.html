@@ -71,7 +71,7 @@
 				<!-- Why bother building them? -->
 				<section>
 					<section>Why build <span class="euricom">distributed systems</span>?</section>
-					<section>
+					<section data-notes="build around business capabilities">
 						Microservices
 						<p class="fragment r-fit-text">
 							Teams can develop, deploy and scale software <span class="euricom">independently</span>
@@ -123,45 +123,62 @@
 					<section data-auto-animate>
 						<span class="euricom">Multiple</span> computers
 					</section>
-					<section>
+					<section data-notes="worse as we add nodes/services to cluster">
 						communication
-						<p class="fragment">
-							over a <span class="euricom">network</span>
-						</p>
 					</section>
-					<section data-background-color="white">
+					<section data-background-color="white" data-notes="1 line">
 						<img src="assets/1-line.png" alt="2 computers">
 					</section>
-					<section data-background-color="white">
-						<img src="assets/6-lines.png" alt="2 computers">
+					<section data-background-color="white" data-notes="6 lines">
+						<img src="assets/6-lines.png" alt="4 computers">
 					</section>
-					<section data-background-color="white">
-						<img src="assets/15-lines.png" alt="2 computers">
+					<section data-background-color="white" data-notes="15 lines">
+						<img src="assets/15-lines.png" alt="6 computers">
 					</section>
-					<section data-background-color="white">
-						<img src="assets/28-lines.png" alt="2 computers">
-					</section>
-					<section>
-						important to get <span class="euricom">right</span>
-					</section>
-					<section>
-						easy to get <span class="euricom">wrong</span>
-					</section>
-					<section>
-						it works on <span class="euricom">my computer</span>
+					<section data-background-color="white" data-notes="28 lines">
+						<img src="assets/28-lines.png" alt="8 computers">
 					</section>
 				</section>
 
 				<section>
 					<section>
-						8 fallacies
+						communicate over a <span class="euricom">network</span>
 					</section>
+					<section data-auto-animate>
+						<ul>
+							<li>The network is reliable</li>
+							<li>Latency is zero</li>
+							<li>Bandwidth is infinite</li>
+							<li>The network is secure</li>
+							<li>Topology doesn't change</li>
+							<li>There is one administrator</li>
+							<li>Transport cost is zero</li>
+							<li>The network is homogeneous</li>
+						</ul>
+					</section>
+					<section data-auto-animate>
+						<ul>
+							<li class="list-type-none">
+								The network is <span class="euricom">reliable</span>
+							</li>
+						</ul>
+					</section>
+					<section data-auto-animate>
+						The network is <span class="euricom">unreliable</span>
+					</section>
+				</section>
+
+				<section>
+					Messages getting lost
 				</section>
 
 				<!-- CAP -->
 				<section>
-					<section>
-						What about <span class="euricom">distributed data stores</span>
+					<section data-notes="eventual consistency 😞">
+						<span class="euricom">distributed data stores</span>
+					</section>
+					<section data-background-color="white">
+						<img src="assets/network-partition.png" alt="Network partition" />
 					</section>
 					<section>
 						<span class="euricom">CAP</span> theorem
@@ -189,7 +206,18 @@
 				</section>
 
 				<section>
-					TODO: before we move to concurrency, note difference in architecture on different levels
+					<section data-auto-animate>
+						Problems in <span class="euricom">infrastructure</span>
+					</section>
+					<section data-auto-animate>
+						Problems in <span class="euricom">architecture</span>
+					</section>
+					<section data-notes="Code style, design patterns, naming">
+						Consistency
+					</section>
+					<section data-notes="communication in distributed is inconsistent">
+						<span class="euricom">inconsistent</span> communication
+					</section>
 				</section>
 
 				<!-- Let's take a step back -->
@@ -201,17 +229,17 @@
 						</p>
 					</section>
 					<section>
-						and focus on a <span class="euricom">single computer</span>
+						focus on a <span class="euricom">single computer</span>
 					</section>
 				</section>
 
 				<!-- Focus on a single node/computer -->
 				<section>
 					<section>
-						<span class="euricom">one</span> core
+						<span class="euricom">one</span> core, 100 tasks
 					</section>
 					<section>
-						<span class="euricom">100</span> cores
+						<span class="euricom">100</span> cores, 100 tasks
 					</section>
 					<section>
 						<span class="euricom">100</span>x faster
@@ -228,9 +256,38 @@
 					</p>
 				</section>
 
+				<section>
+					<section data-auto-animate>
+						<span class="euricom">Parallel</span> program
+					</section>
+					<section data-auto-animate>
+						Parallel program
+						<p>is <span class="euricom">hard</span> to make</p>
+					</section>
+					<section>
+						Synchronization <span class="euricom">"primitives"</span>
+						<p>
+							<span class="fragment">Threads</span>
+							<span class="fragment">, Mutex</span>
+							<span class="fragment">, Semaphore</span>
+							<span class="fragment">, Handles</span>
+							<span class="fragment">, (Spin)lock</span>
+						</p>
+						<aside class="notes">
+							Mutex -> exclusive access<br />
+							Semaphore -> limits the number of threads that can access
+						</aside>
+					</section>
+					<section>
+						What <span class="euricom">can</span> we do?
+					</section>
+				</section>
+
 			</div>
 		</div>
 
-		<img id="branding-logo" src="assets/euricom-logo.png" />
+		<a href="?print-pdf">
+			<img id="branding-logo" src="assets/euricom-logo.png" />
+		</a>
 	</body>
 </html>
