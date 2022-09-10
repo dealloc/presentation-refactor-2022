@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Distributed Concurrency</title>
 		<link rel="stylesheet" href="index.css" />
-		<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Poppins&display=swap" rel="stylesheet"> 
 		<script src="index.js" defer></script>
 	</head>
 	<body>
@@ -267,8 +267,7 @@
 					<section>
 						Synchronization <span class="euricom">"primitives"</span>
 						<p>
-							<span class="fragment">Threads</span>
-							<span class="fragment">, Mutex</span>
+							<span class="fragment">Mutex</span>
 							<span class="fragment">, Semaphore</span>
 							<span class="fragment">, Handles</span>
 							<span class="fragment">, (Spin)lock</span>
@@ -280,6 +279,29 @@
 					</section>
 					<section>
 						What <span class="euricom">can</span> we do?
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<span class="euricom">concurrent</span> program
+					</section>
+					<section>
+						Concurrency <span class="ligature euricom">!=</span> Parallelism
+					</section>
+					<section data-notes="definition of concurrency">
+						the <span class="euricom">composition</span> of independently executing <span class="euricom">processes</span>
+					</section>
+					<section data-notes="definition of parallelism">
+						simultaneous <span class="euricom">execution</span> of computations
+					</section>
+					<section data-notes="Concurrency provides a way to structure a solution to solve a problem that may (but not necessarily has to) be parallelizable">
+						<p>
+							Concurrency is about <span class="euricom">structure</span>
+						</p>
+						<p class="fragment">
+							Parallelism is about <span class="euricom">execution</span>
+						</p>
 					</section>
 				</section>
 
