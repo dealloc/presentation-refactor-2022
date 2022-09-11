@@ -39,16 +39,6 @@
 						What are <span class="euricom">distributed systems</span>
 					</section>
 					<section>
-						A collection of <span class="euricom">independent computers</span>
-						that appear to its users as <span class="euricom">one computer</span>
-						<p>- Andrew Tannenbaum</p>
-					</section>
-					<section>
-						A <span class="euricom">distributed system</span> is a system whose components are located on different networked computers,
-						which communicate and coordinate their actions by passing messages to one another and work towards a common goal.
-						<p>- Wikipedia</p>
-					</section>
-					<section>
 						<p>Three characteristics</p>
 						<ul>
 							<li class="fragment">
@@ -61,6 +51,14 @@
 								Work towards a <span class="euricom">common goal</span>
 							</li>
 						</ul>
+					</section>
+					<section>
+						A <span class="euricom">distributed system</span> is a system whose components are located on different networked computers,
+						which communicate and coordinate their actions by passing messages to one another and work towards a common goal.
+						<p>- Wikipedia</p>
+					</section>
+					<section data-background-color="white">
+						<img src="assets/distributed-system.png" alt="Distributed system">
 					</section>
 				</section>
 
@@ -168,15 +166,39 @@
 					</section>
 				</section>
 
+				<!-- The 2 generals problem -->
 				<section>
-					Messages getting lost
+					<section>
+						Messages get <span class="euricom">lost</span>
+					</section>
+					<section>
+						The two generals' <span class="euricom">problem</span>
+					</section>
+					<section data-background-color="white">
+						<img src="assets/2-generals.webp" alt="2 Generals' problem">
+					</section>
+					<section data-background-color="white">
+						<img src="assets/2-generals-attack-left.webp" alt="2 Generals' problem">
+					</section>
+					<section data-background-color="white">
+						<img src="assets/2-generals-attack-right.webp" alt="2 Generals' problem">
+					</section>
+					<section data-background-color="white">
+						<img src="assets/2-generals-ack-left.webp" alt="2 Generals' problem">
+					</section>
+					<section data-background-color="white">
+						<img src="assets/2-generals-ack-right.webp" alt="2 Generals' problem">
+					</section>
+					<section data-background-color="white">
+						<img src="assets/2-generals-late.webp" alt="2 Generals' problem">
+					</section>
+					<section data-background-color="white">
+						<img src="assets/book-flight.webp" alt="2 Generals' problem in real life">
+					</section>
 				</section>
 
 				<!-- CAP -->
 				<section>
-					<section data-notes="eventual consistency 😞">
-						<span class="euricom">distributed data stores</span>
-					</section>
 					<section data-background-color="white">
 						<img src="assets/network-partition.png" alt="Network partition" />
 					</section>
@@ -198,25 +220,22 @@
 						<img src="assets/network-partition.png" alt="Network partition" />
 					</section>
 					<section data-background-color="white">
-						<img src="assets/cap-ap.png" alt="Network partition" />
+						<img src="assets/cap-cp.png" alt="Network partition" />
 					</section>
 					<section data-background-color="white">
-						<img src="assets/cap-cp.png" alt="Network partition" />
+						<img src="assets/cap-ap.png" alt="Network partition" />
 					</section>
 				</section>
 
 				<section>
-					<section data-auto-animate>
-						Problems in <span class="euricom">infrastructure</span>
+					<section>
+						When is something a <span class="euricom">network partition</span>
 					</section>
-					<section data-auto-animate>
-						Problems in <span class="euricom">architecture</span>
-					</section>
-					<section data-notes="Code style, design patterns, naming">
-						Consistency
-					</section>
-					<section data-notes="communication in distributed is inconsistent">
-						<span class="euricom">inconsistent</span> communication
+					<section>
+						did it <span class="euricom">break</span>
+						<p class="fragment">
+							or is it just <span class="euricom">slow</span>
+						</p>
 					</section>
 				</section>
 
@@ -249,17 +268,21 @@
 					</section>
 				</section>
 
+				<!-- my favourite quote -->
 				<section>
-					<span class="euricom">N</span> times faster
-					<p>
-						on a <span class="euricom">N</span> core computer
-					</p>
-				</section>
-
-				<section>
+					<section>
+						<span class="euricom">N</span> times faster
+						<p>
+							on a <span class="euricom">N</span> core computer
+						</p>
+					</section>
 					<section data-auto-animate>
 						<span class="euricom">Parallel</span> program
 					</section>
+				</section>
+
+				<!-- Concurrency vs Parallelism -->
+				<section>
 					<section>
 						Concurrency <span class="ligature euricom">!=</span> Parallelism
 					</section>
@@ -278,10 +301,14 @@
 						</p>
 					</section>
 					<section data-background-color="white">
-						<img src="assets/concurrency-parallelism.png" alt="Concurrency & Parallelism explained">
+						<img src="assets/concurrency.png" alt="Concurrency explained">
+					</section>
+					<section data-background-color="white">
+						<img src="assets/parallelism.png" alt="Parallelism explained">
 					</section>
 				</section>
 
+				<!-- how to (not) write parallel programs -->
 				<section>
 					<section>
 						we want <span class="euricom">parallel</span> programs
@@ -289,17 +316,78 @@
 					<section>
 						it's <span class="euricom">hard</span> to write parallel programs
 					</section>
-					<section data-auto-animate>
+					<section>
+						<span class="euricom">1</span> program doing <span class="euricom">many</span> things
+					</section>
+					<section data-notes="C# Task TPL library">
+						<span class="euricom">abstract</span> the problem
+					</section>
+					<section>
 						<span class="euricom">automate</span> parallellizing programs
 					</section>
-					<section data-auto-animate>
-						automate parallellizing <span class="euricom">concurrent</span> programs
+					<section>
+						instead write <span class="euricom">concurrent</span> programs
+						<p class="fragment">
+							automate <span class="euricom">parallelization</span>
+						</p>
 					</section>
 					<section>
 						<span class="euricom">granularity</span> of parallelization
 					</section>
+				</section>
+
+				<!-- concurrency models -->
+				<section>
+					<section>2 concurrency <span class="euricom">models</span></section>
 					<section>
-						TODO: we're good at this
+						<span class="euricom">Shared memory</span> model
+					</section>
+					<section data-background-color="white" data-notes="hard to debug!">
+						<img src="assets/race-condition.png" alt="Race condition visualized">
+					</section>
+					<section>
+						<span class="euricom">Critical</span> region
+					</section>
+					<section>
+						deadlocks
+					</section>
+					<section>
+						<span class="euricom">Message passing</span> model
+					</section>
+					<section>
+						<p>Don't communicate by <span class="euricom">sharing memory</span></p>
+						<p class="fragment">share memory by <span class="euricom">communicating</span></p>
+					</section>
+					<section data-background-color="white" data-notes="what about dead processes -> message is dropped">
+						<img src="assets/message-passing.png" alt="Message passing visualization">
+					</section>
+					<section>
+						<span class="euricom">1</span> program doing <span class="euricom">1</span> thing
+						<p class="fragment">many times</p>
+					</section>
+				</section>
+
+				<!-- tying everything together -->
+				<section>
+
+					<section data-notes="Is message passing easier than shared memory">
+						is this <span class="euricom">easier</span>?
+					</section>
+					<section>
+						no<span class="fragment">, but also <span class="euricom">yes</span></span>
+					</section>
+					<section>
+						<ul>
+							<li>
+								<span class="euricom">unified</span> programming model
+							</li>
+							<li class="fragment">
+								<span class="euricom">scalable</span> design
+							</li>
+							<li class="fragment">
+								small, <span class="euricom">composable</span> processes
+							</li>
+						</ul>
 					</section>
 				</section>
 
