@@ -64,6 +64,17 @@
 
 				<section>
 					They are <span class="euricom">everywhere</span>
+
+					<aside class="notes">
+						<ul>
+							<li>websites</li>
+							<li>multiplayer games</li>
+							<li>(distributed) databases</li>
+							<li>network file systems</li>
+							<li>bank systems, airline reservation</li>
+							<li>anything with P2P</li>
+						</ul>
+					</aside>
 				</section>
 
 				<!-- Why bother building them? -->
@@ -143,16 +154,30 @@
 						communicate over a <span class="euricom">network</span>
 					</section>
 					<section data-auto-animate>
-						<ul>
-							<li>The network is reliable</li>
-							<li>Latency is zero</li>
-							<li>Bandwidth is infinite</li>
-							<li>The network is secure</li>
-							<li>Topology doesn't change</li>
-							<li>There is one administrator</li>
-							<li>Transport cost is zero</li>
-							<li>The network is homogeneous</li>
-						</ul>
+						<p>8 <span class="euricom">fallacies</span> of distributed computing</p>
+						<ol>
+							<li class="fragment">The network is reliable</li>
+							<li class="fragment">Latency is zero</li>
+							<li class="fragment">Bandwidth is infinite</li>
+							<li class="fragment">The network is secure</li>
+							<li class="fragment">Topology doesn't change</li>
+							<li class="fragment">There is one administrator</li>
+							<li class="fragment">Transport cost is zero</li>
+							<li class="fragment">The network is homogeneous</li>
+						</ol>
+
+						<aside class="notes">
+							<ol>
+								<li>error handling sucks</li>
+								<li>latency, timeouts, wasted bandwidth</li>
+								<li>bottlenecks when network is flooded</li>
+								<li>malicious users, data leaks</li>
+								<li>changes in topology mean different latency ando/or bandwidth</li>
+								<li>multiple administrators may institute conflicting policies</li>
+								<li>building and maintaining networks can be expensive</li>
+								<li>different kinds of networks and devices -> first 3</li>
+							</ol>
+						</aside>
 					</section>
 					<section data-auto-animate>
 						<ul>
@@ -190,10 +215,10 @@
 						<img src="assets/2-generals-ack-right.webp" alt="2 Generals' problem">
 					</section>
 					<section data-background-color="white">
-						<img src="assets/2-generals-late.webp" alt="2 Generals' problem">
+						<img src="assets/book-flight.webp" alt="2 Generals' problem in real life">
 					</section>
 					<section data-background-color="white">
-						<img src="assets/book-flight.webp" alt="2 Generals' problem in real life">
+						<img src="assets/book-flight-comic.webp" alt="2 Generals' problem in real life">
 					</section>
 				</section>
 
@@ -358,8 +383,11 @@
 						<p>Don't communicate by <span class="euricom">sharing memory</span></p>
 						<p class="fragment">share memory by <span class="euricom">communicating</span></p>
 					</section>
-					<section data-background-color="white" data-notes="what about dead processes -> message is dropped">
+					<section data-background-color="white" data-auto-animate>
 						<img src="assets/message-passing.png" alt="Message passing visualization">
+					</section>
+					<section data-background-color="white" data-auto-animate>
+						<img src="assets/message-passing-dead-process.png" alt="Message passing visualization">
 					</section>
 					<section>
 						<span class="euricom">1</span> program doing <span class="euricom">1</span> thing
@@ -376,19 +404,52 @@
 					<section>
 						no<span class="fragment">, but also <span class="euricom">yes</span></span>
 					</section>
+
 					<section>
-						<ul>
-							<li>
-								<span class="euricom">unified</span> programming model
-							</li>
-							<li class="fragment">
-								<span class="euricom">scalable</span> design
-							</li>
-							<li class="fragment">
-								small, <span class="euricom">composable</span> processes
-							</li>
-						</ul>
+						delegate communication to <span class="euricom">runtime</span>
 					</section>
+					<section>
+						fix problems <span class="euricom">early</span> on
+					</section>
+					<section>
+						small, <span class="euricom">simple</span> programs
+					</section>
+					<section>
+						scalable <span class="euricom">parallelization</span>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<span class="euricom">failure</span> handling
+					</section>
+					<section data-background-color="white">
+						<img src="assets/supervision-tree.png" alt="Supervision tree">
+					</section>
+					<section>
+						<p>
+							<span class="euricom">repeatable</span> bugs
+						</p>
+						<p>
+							<span class="euricom">transient</span> bugs
+						</p>
+					</section>
+				</section>
+
+				<!-- conclusion -->
+				<section>
+					<section>
+						tools to reason about, and build <span class="euricom">better</span> systems
+					</section>
+					<section>
+						foundation for stable <span class="euricom">distributed systems</span>
+					</section>
+				</section>
+
+				<section data-autoslide="1000">
+					<span class="euricom">Thank</span> you
+					<p class="fragment">👏👏</p>
 				</section>
 
 			</div>
