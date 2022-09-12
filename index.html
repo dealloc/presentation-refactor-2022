@@ -86,7 +86,7 @@
 							Teams can develop, deploy and scale software <span class="euricom">independently</span>
 						</p>
 					</section>
-					<section>
+					<section data-notes="vertical scaling = more power | horizontal scaling = more computers">
 						Scalability
 						<p class="fragment r-fit-text">
 							Why make <span class="euricom">one computer</span> solve your problem
@@ -254,13 +254,13 @@
 
 				<section>
 					<section>
-						When is something a <span class="euricom">network partition</span>
+						distributed systems are <span class="euricom">hard</span>
 					</section>
 					<section>
-						did it <span class="euricom">break</span>
-						<p class="fragment">
-							or is it just <span class="euricom">slow</span>
-						</p>
+						<span class="euricom">similar</span> problems
+					</section>
+					<section data-background-color="white">
+						<img src="assets/distributed-parallel.png" alt="Network partition" />
 					</section>
 				</section>
 
@@ -383,7 +383,7 @@
 						<p>Don't communicate by <span class="euricom">sharing memory</span></p>
 						<p class="fragment">share memory by <span class="euricom">communicating</span></p>
 					</section>
-					<section data-background-color="white">
+					<section data-background-color="white" data-notes="What is the receiving process is on another server">
 						<img src="assets/message-passing.png" alt="Message passing visualization">
 					</section>
 					<section data-background-color="white" data-auto-animate>
@@ -447,6 +447,9 @@
 					</section>
 					<section>
 						foundation for stable <span class="euricom">distributed systems</span>
+					</section>
+					<section data-notes="Heroku, Discord, change.org, French government, Mozilla, Whatsapp, Pinterest, Grindr">
+						<span class="euricom">Battle tested</span> architecture
 					</section>
 				</section>
 
