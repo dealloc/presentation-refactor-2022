@@ -361,7 +361,7 @@
 					</section>
 				</section>
 
-				<!-- concurrency models -->
+				<!-- concurrency & concurrency models -->
 				<section>
 					<section>2 concurrency <span class="euricom">models</span></section>
 					<section>
@@ -383,10 +383,13 @@
 						<p>Don't communicate by <span class="euricom">sharing memory</span></p>
 						<p class="fragment">share memory by <span class="euricom">communicating</span></p>
 					</section>
-					<section data-background-color="white" data-auto-animate>
+					<section data-background-color="white">
 						<img src="assets/message-passing.png" alt="Message passing visualization">
 					</section>
 					<section data-background-color="white" data-auto-animate>
+						<img src="assets/message-passing-handler.png" alt="Message passing visualization">
+					</section>
+					<section data-background-color="white" data-auto-animate data-visibility="hidden">
 						<img src="assets/message-passing-dead-process.png" alt="Message passing visualization">
 					</section>
 					<section>
@@ -420,12 +423,9 @@
 
 				</section>
 
-				<section>
+				<section data-visibility="hidden">
 					<section>
 						<span class="euricom">failure</span> handling
-					</section>
-					<section data-background-color="white">
-						<img src="assets/supervision-tree.png" alt="Supervision tree">
 					</section>
 					<section>
 						<p>
@@ -434,6 +434,9 @@
 						<p>
 							<span class="euricom">transient</span> bugs
 						</p>
+					</section>
+					<section data-background-color="white">
+						<img src="assets/supervision-tree.png" alt="Supervision tree">
 					</section>
 				</section>
 
