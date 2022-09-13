@@ -220,6 +220,9 @@
 					<section data-background-color="white">
 						<img src="assets/book-flight-comic.webp" alt="2 Generals' problem in real life">
 					</section>
+					<section>
+						real world: <span class="euricom">idempotency</span>
+					</section>
 				</section>
 
 				<!-- CAP -->
@@ -255,6 +258,9 @@
 				<section>
 					<section>
 						distributed systems are <span class="euricom">hard</span>
+					</section>
+					<section>
+						Communication & Failures
 					</section>
 					<section>
 						<span class="euricom">similar</span> problems
@@ -357,6 +363,9 @@
 						</p>
 					</section>
 					<section>
+						<span class="euricom">web</span> server
+					</section>
+					<section>
 						<span class="euricom">granularity</span> of parallelization
 					</section>
 				</section>
@@ -383,18 +392,31 @@
 						<p>Don't communicate by <span class="euricom">sharing memory</span></p>
 						<p class="fragment">share memory by <span class="euricom">communicating</span></p>
 					</section>
+					<section data-background-color="white" data-auto-animate>
+						<img src="assets/message-passing-people.png" alt="Message passing visualization in the real world">
+					</section>
 					<section data-background-color="white" data-notes="What is the receiving process is on another server">
 						<img src="assets/message-passing.png" alt="Message passing visualization">
-					</section>
-					<section data-background-color="white" data-auto-animate>
-						<img src="assets/message-passing-handler.png" alt="Message passing visualization">
-					</section>
-					<section data-background-color="white" data-auto-animate data-visibility="hidden">
-						<img src="assets/message-passing-dead-process.png" alt="Message passing visualization">
 					</section>
 					<section>
 						<span class="euricom">1</span> program doing <span class="euricom">1</span> thing
 						<p class="fragment">many times</p>
+					</section>
+					<section data-background-color="white" data-auto-animate>
+						<img src="assets/message-passing-handler.png" alt="Message passing visualization">
+					</section>
+					<section>
+						messaging is handled by the <span class="euricom">runtime</span>
+					</section>
+					<section>
+						<span class="euricom">physical</span> boundaries
+					</section>
+					<section data-background-color="white">
+						<img src="assets/message-passing-dead-process.png" alt="Message passing visualization">
+
+						<aside class="notes">
+							We can't know the state of other processes -> real world!
+						</aside>
 					</section>
 				</section>
 
@@ -450,6 +472,10 @@
 					</section>
 					<section data-notes="Heroku, Discord, change.org, French government, Mozilla, Whatsapp, Pinterest, Grindr">
 						<span class="euricom">Battle tested</span> architecture
+					</section>
+					<section>
+						Consider using <span class="euricom">concurrency</span>
+						<p class="fragment">and watch it <span class="euricom">scale</span></p>
 					</section>
 				</section>
 
