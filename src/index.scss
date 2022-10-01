@@ -1,6 +1,10 @@
 @import 'reveal.js/css/reveal.scss';
 @import 'theme/euricom.scss';
 
+:root {
+	--animate-duration: 200ms;
+}
+
 .euricom {
 	color: $brightGreen;
 }
@@ -18,6 +22,29 @@
 	bottom: 2rem;
 	left: 2rem;
 	width: 300px;
+	--animate-delay: 200ms;
+}
+
+#opening-footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100vw;
+	z-index: 10;
+}
+
+#refactor-logo {
+	position: absolute;
+	top: 2rem;
+	left: 2rem;
+	width: 300px;
+}
+
+section[data-opening] {
+	font-family: 'Space Mono', monospace !important;
+	font-weight: 700 !important;
+	font-size: 1.2em;
+	color: #004643;
 }
 
 @media screen and (max-width: 800px) {
