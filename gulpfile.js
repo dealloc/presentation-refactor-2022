@@ -7,6 +7,9 @@ const imagemin = require('gulp-imagemin');
 // parameters
 let minify = (process.env.NODE_ENV === 'production');
 
+const fonts = () => src('fonts/**/*')
+	.pipe(dest('dist/fonts'));
+
 const styles = () => src('src/index.scss')
 	.pipe(sass({
 		outputStyle: minify ? 'compressed': undefined,
@@ -43,6 +46,7 @@ function serve(cb) {
 	watch('src/**/*.js', series(scripts, reload));
 	watch('src/**/*.scss', series(styles, reload));
 	watch('assets/*', series(images, reload));
+	watch('fonts/**/*', series(fonts));
 }
 
 exports.styles = styles;
@@ -50,5 +54,5 @@ exports.scripts = scripts;
 exports.images = images;
 exports.reload = reload;
 exports.serve = serve;
-exports.build = parallel(styles, scripts, images, reload);
-exports.default = series(parallel(styles, scripts, images, reload), serve);
+exports.build = parallel(fonts, styles, scripts, images, reload);
+exports.default = series(parallel(fonts, styles, scripts, images, reload), serve);
