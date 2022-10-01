@@ -11,6 +11,7 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
+				<!-- introduction -->
 				<section>
 					<section data-opening="true" data-background-color="white">
 						Distributed Concurrency
@@ -37,7 +38,15 @@
 				<!-- What is a distributed system -->
 				<section>
 					<section>
-						What are <span class="euricom">distributed systems</span>
+						What is a <span class="euricom">distributed system</span>
+					</section>
+					<section>
+						A <span class="euricom">distributed system</span> is a system whose components are located on different networked computers,
+						which communicate and coordinate their actions by passing messages to one another and work towards a common goal.
+						<p>- Wikipedia</p>
+					</section>
+					<section data-background-color="white">
+						<img src="assets/distributed-system.png" alt="Distributed system">
 					</section>
 					<section>
 						<p>Three characteristics</p>
@@ -52,14 +61,6 @@
 								Work towards a <span class="euricom">common goal</span>
 							</li>
 						</ul>
-					</section>
-					<section>
-						A <span class="euricom">distributed system</span> is a system whose components are located on different networked computers,
-						which communicate and coordinate their actions by passing messages to one another and work towards a common goal.
-						<p>- Wikipedia</p>
-					</section>
-					<section data-background-color="white">
-						<img src="assets/distributed-system.png" alt="Distributed system">
 					</section>
 				</section>
 
@@ -260,7 +261,7 @@
 
 				<!-- distributed systems are HARD -->
 				<section>
-					<section>
+					<section data-notes="Halfway point, we should be around 30 minutes ish">
 						distributed systems are <span class="euricom">hard</span>
 					</section>
 					<section>
@@ -367,10 +368,19 @@
 						</p>
 					</section>
 					<section>
-						<span class="euricom">web</span> server
+						<span class="euricom">granularity</span> of parallelization
+					</section>
+					<section data-background-color="white" data-notes="Write concurrent, run parallel">
+						<img src="assets/concurrent-parallelism.png" alt="Concurrent parallelism">
+					</section>
+					<section data-background-color="white" data-auto-animate>
+						<img src="assets/scheduling-parallel.png" alt="Parallel scheduling">
+					</section>
+					<section data-background-color="white" data-auto-animate>
+						<img src="assets/scheduling-concurrency.png" alt="Concurrent scheduling">
 					</section>
 					<section>
-						<span class="euricom">granularity</span> of parallelization
+						<span class="euricom">web</span> server
 					</section>
 				</section>
 
@@ -379,6 +389,9 @@
 					<section>2 concurrency <span class="euricom">models</span></section>
 					<section>
 						<span class="euricom">Shared memory</span> model
+					</section>
+					<section data-background-color="white">
+						<img src="assets/shared-memory.png" alt="Shared memory concurrency">
 					</section>
 					<section data-background-color="white" data-notes="hard to debug!">
 						<img src="assets/race-condition.png" alt="Race condition visualized">
@@ -428,6 +441,11 @@
 				<section>
 					<section>
 						<span class="euricom">failure</span> handling
+
+						<aside class="notes">
+							Skip here if we're low on time
+							<p>We skip to "is this easier?"</p>
+						</aside>
 					</section>
 					<section>
 						<p>
@@ -490,7 +508,7 @@
 					</section>
 				</section>
 
-				<section data-autoslide="1000">
+				<section data-opening="true" data-background-color="white" data-autoslide="1000">
 					<span class="euricom">Thank</span> you
 					<p class="fragment">👏👏</p>
 				</section>
