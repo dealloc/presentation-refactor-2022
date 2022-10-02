@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Distributed Concurrency</title>
+		<link rel="stylesheet" href="index.css" />
+		<script src="index.js" defer></script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<!-- introduction -->
+				<section>
+					<section data-opening="true" data-background-color="white">
+						Distributed Concurrency
+					</section>
+					<section>
+						<p>Wannes Gennar</p>
+						<p class="fragment">
+							Consultant @ <span class="euricom">Euricom</span>
+						</p>
+					</section>
+					<section>
+						<span class="euricom">distributed systems</span>
+					</section>
+					<section data-auto-animate>
+						<span class="euricom" data-id="concurrency">concurrency</span>
+					</section>
+					<section data-auto-animate>
+						<span data-id="concurrency">concurrency</span>
+						<span>to build</span>
+						<span class="euricom">distributed systems</span>
+					</section>
+				</section>
+
+				<!-- What is a distributed system -->
+				<section>
+					<section>
+						What is a <span class="euricom">distributed system</span>
+					</section>
+					<section>
+						A <span class="euricom">distributed system</span> is a system whose components are located on different networked computers,
+						which communicate and coordinate their actions by passing messages to one another and work towards a common goal.
+						<p>- Wikipedia</p>
+					</section>
+					<section data-background-color="white">
+						<img src="assets/distributed-system.png" alt="Distributed system">
+					</section>
+					<section>
+						<p>Three characteristics</p>
+						<ul>
+							<li class="fragment">
+								<span class="euricom">Run</span> independently
+							</li>
+							<li class="fragment">
+								<span class="euricom">Fail</span> independently
+							</li>
+							<li class="fragment">
+								Work towards a <span class="euricom">common goal</span>
+							</li>
+						</ul>
+					</section>
+				</section>
+
+				<!-- examples of distributed systems -->
+				<section>
+					They are <span class="euricom">everywhere</span>
+
+					<aside class="notes">
+						<ul>
+							<li>websites</li>
+							<li>multiplayer games</li>
+							<li>(distributed) databases</li>
+							<li>network file systems</li>
+							<li>bank systems, airline reservation</li>
+							<li>anything with P2P</li>
+						</ul>
+					</aside>
+				</section>
+
+				<!-- Why bother building them? -->
+				<section>
+					<section>Why build <span class="euricom">distributed systems</span>?</section>
+					<section data-notes="build around business capabilities">
+						Microservices
+						<p class="fragment r-fit-text">
+							Teams can develop, deploy and scale software <span class="euricom">independently</span>
+						</p>
+					</section>
+					<section data-notes="vertical scaling = more power | horizontal scaling = more computers">
+						Scalability
+						<p class="fragment r-fit-text">
+							Why make <span class="euricom">one computer</span> solve your problem
+							if you can have a <span class="euricom">hundred computers</span> solve your problem
+						</p>
+					</section>
+					<section>
+						Cost efficiency
+						<span class="fragment r-fit-text">
+							Many <span class="euricom">smaller</span> can be cheaper
+							than one <span class="euricom">powerful</span> computer
+						</span>
+					</section>
+					<section>
+						Resiliency
+						<p class="fragment r-fit-text">
+							In case a machine <span class="euricom">fails</span>,
+							there's other machines to <span class="euricom">take over</span>
+						</p>
+					</section>
+				</section>
+
+				<!-- the bad news: complexity -->
+				<section>
+					<section>
+						So...
+					</section>
+					<section>
+						Why isn't <span class="euricom">everything</span> a distributed system?
+					</section>
+					<section>
+						building
+						<span class="fragment">, running</span>
+						<span class="fragment">and maintaining</span>
+						<span class="fragment">
+							is really
+							<span class="euricom">complex</span>
+						</span>
+					</section>
+					<section data-auto-animate>
+						<span class="euricom">One</span> computer
+					</section>
+					<section data-auto-animate>
+						<span class="euricom">Multiple</span> computers
+					</section>
+					<section data-notes="worse as we add nodes/services to cluster">
+						communication
+					</section>
+					<section data-background-color="white" data-notes="1 line">
+						<img src="assets/1-line.png" alt="2 computers">
+					</section>
+					<section data-background-color="white" data-notes="6 lines">
+						<img src="assets/6-lines.png" alt="4 computers">
+					</section>
+					<section data-background-color="white" data-notes="15 lines">
+						<img src="assets/15-lines.png" alt="6 computers">
+					</section>
+					<section data-background-color="white" data-notes="28 lines">
+						<img src="assets/28-lines.png" alt="8 computers">
+					</section>
+				</section>
+
+				<!-- communication -->
+				<section>
+					<section>
+						communicate over a <span class="euricom">network</span>
+					</section>
+					<section data-auto-animate>
+						<p>8 <span class="euricom">fallacies</span> of distributed computing</p>
+						<ol>
+							<li class="fragment">The network is reliable</li>
+							<li class="fragment">Latency is zero</li>
+							<li class="fragment">Bandwidth is infinite</li>
+							<li class="fragment">The network is secure</li>
+							<li class="fragment">Topology doesn't change</li>
+							<li class="fragment">There is one administrator</li>
+							<li class="fragment">Transport cost is zero</li>
+							<li class="fragment">The network is homogeneous</li>
+						</ol>
+
+						<aside class="notes">
+							<ol>
+								<li>error handling sucks</li>
+								<li>latency, timeouts, wasted bandwidth</li>
+								<li>bottlenecks when network is flooded</li>
+								<li>malicious users, data leaks</li>
+								<li>changes in topology mean different latency ando/or bandwidth</li>
+								<li>multiple administrators may institute conflicting policies</li>
+								<li>building and maintaining networks can be expensive</li>
+								<li>different kinds of networks and devices -> first 3</li>
+							</ol>
+						</aside>
+					</section>
+					<section data-auto-animate>
+						<ul>
+							<li class="list-type-none">
+								The network is <span class="euricom">reliable</span>
+							</li>
+						</ul>
+					</section>
+					<section data-auto-animate>
+						The network is <span class="euricom">unreliable</span>
+					</section>
+				</section>
+
+				<!-- The 2 generals problem -->
+				<section>
+					<section>
+						Messages get <span class="euricom">lost</span>
+					</section>
+					<section>
+						The two generals' <span class="euricom">problem</span>
+					</section>
+					<section data-background-color="white">
+						<img src="assets/2-generals.webp" alt="2 Generals' problem">
+					</section>
+					<section data-background-color="white">
+						<img src="assets/2-generals-attack-left.webp" alt="2 Generals' problem">
+					</section>
+					<section data-background-color="white">
+						<img src="assets/2-generals-attack-right.webp" alt="2 Generals' problem">
+					</section>
+					<section data-background-color="white">
+						<img src="assets/2-generals-ack-left.webp" alt="2 Generals' problem">
+					</section>
+					<section data-background-color="white">
+						<img src="assets/2-generals-ack-right.webp" alt="2 Generals' problem">
+					</section>
+					<section data-background-color="white">
+						<img src="assets/book-flight.webp" alt="2 Generals' problem in real life">
+					</section>
+					<section data-background-color="white">
+						<img src="assets/book-flight-comic.webp" alt="2 Generals' problem in real life">
+					</section>
+					<section>
+						real world: <span class="euricom">idempotency</span>
+					</section>
+				</section>
+
+				<!-- CAP -->
+				<section>
+					<section data-background-color="white">
+						<img src="assets/network-partition.png" alt="Network partition" />
+					</section>
+					<section>
+						<span class="euricom">CAP</span> theorem
+						<p>
+							<span class="fragment">
+								<span class="euricom">C</span>onsistency
+							</span>
+							<span class="fragment">
+								<span class="euricom">A</span>vailability
+							</span>
+							<span class="fragment">
+								<span class="euricom">P</span>artition tolerance
+							</span>
+						</p>
+					</section>
+					<section data-background-color="white">
+						<img src="assets/network-partition.png" alt="Network partition" />
+					</section>
+					<section data-background-color="white">
+						<img src="assets/cap-cp.png" alt="Network partition" />
+					</section>
+					<section data-background-color="white">
+						<img src="assets/cap-ap.png" alt="Network partition" />
+					</section>
+				</section>
+
+				<!-- distributed systems are HARD -->
+				<section>
+					<section data-notes="Halfway point, we should be around 30 minutes ish">
+						distributed systems are <span class="euricom">hard</span>
+					</section>
+					<section>
+						Communication & Failures
+					</section>
+					<section>
+						<span class="euricom">similar</span> problems
+					</section>
+					<section data-background-color="white">
+						<img src="assets/distributed-parallel.png" alt="Network partition" />
+					</section>
+				</section>
+
+				<!-- Let's take a step back -->
+				<section>
+					<section>
+						let's take a step <span class="euricom">back</span>
+						<p class="fragment">
+							or rather, <span class="euricom">forward</span>
+						</p>
+					</section>
+					<section>
+						focus on a <span class="euricom">single computer</span>
+					</section>
+				</section>
+
+				<!-- Focus on a single node/computer -->
+				<section>
+					<section>
+						<span class="euricom">one</span> core, 100 tasks
+					</section>
+					<section>
+						<span class="euricom">100</span> cores, 100 tasks
+					</section>
+					<section>
+						<span class="euricom">100</span>x faster
+					</section>
+					<section>
+						<span class="euricom">slower</span>?
+					</section>
+				</section>
+
+				<!-- my favourite quote -->
+				<section>
+					<section>
+						<span class="euricom">N</span> times faster
+						<p>
+							on a <span class="euricom">N</span> core computer
+						</p>
+					</section>
+					<section data-auto-animate>
+						<span class="euricom">Parallel</span> program
+					</section>
+				</section>
+
+				<!-- Concurrency vs Parallelism -->
+				<section>
+					<section>
+						Concurrency <span class="ligature euricom">!=</span> Parallelism
+					</section>
+					<section data-notes="definition of concurrency">
+						the <span class="euricom">composition</span> of independently executing <span class="euricom">processes</span>
+					</section>
+					<section data-notes="definition of parallelism">
+						simultaneous <span class="euricom">execution</span> of computations
+					</section>
+					<section data-notes="Concurrency provides a way to structure a solution to solve a problem that may (but not necessarily has to) be parallelizable">
+						<p>
+							Concurrency is about <span class="euricom">structure</span>
+						</p>
+						<p class="fragment">
+							Parallelism is about <span class="euricom">execution</span>
+						</p>
+					</section>
+					<section data-background-color="white">
+						<img src="assets/concurrency.png" alt="Concurrency explained">
+					</section>
+					<section data-background-color="white">
+						<img src="assets/parallelism.png" alt="Parallelism explained">
+					</section>
+				</section>
+
+				<!-- how to (not) write parallel programs -->
+				<section>
+					<section>
+						we want <span class="euricom">parallel</span> programs
+					</section>
+					<section>
+						it's <span class="euricom">hard</span> to write parallel programs
+					</section>
+					<section>
+						<span class="euricom">1</span> program doing <span class="euricom">many</span> things
+					</section>
+					<section data-notes="C# Task TPL library">
+						<span class="euricom">abstract</span> the problem
+					</section>
+					<section>
+						<span class="euricom">automate</span> parallellizing programs
+					</section>
+					<section>
+						instead write <span class="euricom">concurrent</span> programs
+						<p class="fragment">
+							automate <span class="euricom">parallelization</span>
+						</p>
+					</section>
+					<section>
+						<span class="euricom">granularity</span> of parallelization
+					</section>
+					<section data-background-color="white" data-notes="Write concurrent, run parallel">
+						<img src="assets/concurrent-parallelism.png" alt="Concurrent parallelism">
+					</section>
+					<section data-background-color="white" data-auto-animate>
+						<img src="assets/scheduling-parallel.png" alt="Parallel scheduling">
+					</section>
+					<section data-background-color="white" data-auto-animate>
+						<img src="assets/scheduling-concurrency.png" alt="Concurrent scheduling">
+					</section>
+					<section>
+						<span class="euricom">web</span> server
+					</section>
+				</section>
+
+				<!-- concurrency & concurrency models -->
+				<section>
+					<section>2 concurrency <span class="euricom">models</span></section>
+					<section>
+						<span class="euricom">Shared memory</span> model
+					</section>
+					<section data-background-color="white">
+						<img src="assets/shared-memory.png" alt="Shared memory concurrency">
+					</section>
+					<section data-background-color="white" data-notes="hard to debug!">
+						<img src="assets/race-condition.png" alt="Race condition visualized">
+					</section>
+					<section>
+						<span class="euricom">Critical</span> region
+					</section>
+					<section>
+						deadlocks
+					</section>
+					<section>
+						<span class="euricom">Message passing</span> model
+					</section>
+					<section>
+						<p>Don't communicate by <span class="euricom">sharing memory</span></p>
+						<p class="fragment">share memory by <span class="euricom">communicating</span></p>
+					</section>
+					<section data-background-color="white" data-notes="What is the receiving process is on another server">
+						<img src="assets/message-passing.png" alt="Message passing visualization">
+					</section>
+					<section data-background-color="white" data-auto-animate>
+						<img src="assets/message-passing-people.png" alt="Message passing visualization in the real world">
+					</section>
+					<section data-background-color="white" data-auto-animate>
+						<img src="assets/message-passing-handler.png" alt="Message passing visualization">
+					</section>
+					<section>
+						<span class="euricom">1</span> program doing <span class="euricom">1</span> thing
+						<p class="fragment">many times</p>
+					</section>
+					<section>
+						messaging is handled by the <span class="euricom">runtime</span>
+					</section>
+					<section>
+						<span class="euricom">physical</span> boundaries
+					</section>
+					<section data-background-color="white">
+						<img src="assets/message-passing-dead-process.png" alt="Message passing visualization">
+
+						<aside class="notes">
+							We can't know the state of other processes -> real world!
+						</aside>
+					</section>
+				</section>
+
+				<!-- error handling -->
+				<section>
+					<section>
+						<span class="euricom">failure</span> handling
+
+						<aside class="notes">
+							Skip here if we're low on time
+							<p>rest of presentation takes ~10 minutes at regular pace</p>
+							<p>We skip to "is this easier?"</p>
+						</aside>
+					</section>
+					<section>
+						<p>
+							<span class="euricom">repeatable</span> bugs
+						</p>
+						<p class="fragment">
+							<span class="euricom">transient</span> bugs
+						</p>
+					</section>
+					<section>
+						let it <span class="euricom">crash</span>
+					</section>
+					<section data-background-color="white">
+						<img src="assets/supervision-tree.png" alt="Supervision tree">
+					</section>
+					<section data-background-color="white">
+						<img src="assets/supervision-tree-crash.png" alt="Supervision tree">
+					</section>
+				</section>
+
+				<!-- tying everything together -->
+				<section>
+
+					<section data-notes="Is message passing easier than shared memory">
+						is this <span class="euricom">easier</span>?
+					</section>
+					<section>
+						no<span class="fragment">, but also <span class="euricom">yes</span></span>
+					</section>
+
+					<section>
+						delegate communication to <span class="euricom">runtime</span>
+					</section>
+					<section>
+						fix problems <span class="euricom">early</span> on
+					</section>
+					<section>
+						small, <span class="euricom">simple</span> programs
+					</section>
+					<section>
+						scalable <span class="euricom">parallelization</span>
+					</section>
+
+				</section>
+
+				<!-- conclusion -->
+				<section>
+					<section>
+						tools to reason about, and build <span class="euricom">better</span> systems
+					</section>
+					<section>
+						foundation for stable <span class="euricom">distributed systems</span>
+					</section>
+					<section data-notes="Heroku, Discord, change.org, French government, Mozilla, Whatsapp, Pinterest, Grindr">
+						<span class="euricom">Battle tested</span> architecture
+					</section>
+					<section>
+						Consider using <span class="euricom">concurrency</span>
+						<p class="fragment">and watch it <span class="euricom">scale</span></p>
+					</section>
+				</section>
+
+				<section data-opening="true" data-background-color="white" data-autoslide="1000">
+					<span class="euricom">Thank</span> you
+					<p class="fragment">👏👏</p>
+				</section>
+
+			</div>
+		</div>
+
+		<img class="animate__animated " id="refactor-logo" src="assets/re-factor-logo.png" alt="Re:Factor logo">
+		<img class="animate__animated " id="opening-footer" src="assets/opening-footer.png" alt="Sponsors">
+		<a href="?print-pdf">
+			<img id="branding-logo" src="assets/euricom-logo.png" />
+		</a>
+	</body>
+</html>
